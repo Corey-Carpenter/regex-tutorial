@@ -19,6 +19,8 @@ Briefly summarize the regex you will be describing and what you will explain. In
 - [Boundaries](#boundaries)
 - [Back-references](#back-references)
 - [Look-ahead and Look-behind](#look-ahead-and-look-behind)
+- [Example](#example)
+- [Author](#author)
 
 ## Regex Components
 Regexes are not just one big blob of nonsense, but multiple differents components that all work together to validate data. They validate data through a specific search pattern that the components provide. The most common components are anchors, quantifiers, character classes, and alterations. 
@@ -27,7 +29,7 @@ Regexes are not just one big blob of nonsense, but multiple differents component
 Anchors are probably the simplest components of a regex function. They essentially determine the beginning and ending points of a string. For the beginning, a \^ (caret) symbol is used, and for the ending, a \$ (dollar sign) symbol is used. Also, an important thing to note is that there needs to be a \/ at the very start and end of regex functions. For example: /^[whatever search parameters you want]$/
 
 ### Character Classes
-Character classes let you determine specific groups of characters you would want to match. They are always closed in square brackets []. For example if you want the string to be able to have any lowercase between a and z you'd write [a-z]. This would of course be inb
+Character classes let you determine specific groups of characters you would want to match. They are always closed in square brackets []. For example if you want the string to be able to have any lowercase between a and z you'd write [a-z]. If you want digits you could write [0-9].
 
 ### Quantifiers
 Quantifiers specify how frequently a preceding element in a regex pattern should appear. They have influence over character or group repetition. Using specific symbols allows you to customize search parameters. Here are a few examples: An asterisk * matches 0 or more occurences. A plus sign + matches 1 or more occurences. A question mark ? matches zero or one occurences. Using curly brackets you can also matches specific number n occurences: {n}. Putting a comma after n matches n or more occurences: {n,}. Using two numbers will match between them: {n,m}. 
@@ -56,6 +58,18 @@ Back-references enables you to match the same text that was previously collected
 ### Look-ahead and Look-behind
 Look-ahead and look-behind assertons let you check for patterns ahead or behind the current position. It does not consume characters. Look-ahead is written as: ((?=...)) and look-behind is very similar but with an angle bracket <> going backwards: ((?<=...)).
 
-## Author
+### Example
+/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/ 
+This regex function is used to match and validate an email address. It starts with the caret ^ and ends with the dollar sign $. 
 
-My name is Corey Carpenter and I'm learning how to code in the hopes I can create an application I can sell. I'm 19 when I'm writing this (2023) and I really enjoy coding so far. My [Github](https://github.com/Corey-Carpenter) has all the projects I've worked on so far. Nothing terribly fancy or overly complicated but it is definitely a good start.
+'([a-z0-9_\.-]+)': This part is a capturing group that matches the username before the @ symbol. The plus sign is a quantifier that means the preceeding character set needs to appear one or more times. It takes lowercase letters, digits, undersores, hypherns, and periods. The @ symbol is being matched after the username and before the domain name.
+
+([\da-z\.-]+): This is another capturing group that matches the domain name(not the top-level domain). the \d represents any digits, which isn't super necessary because most domain names don't have numbers. This takes any lowercase letters, digits, hyphens, and periods. The plus sign + once again means that the preceesing character set has to occur one or more times. 
+
+\.: The backslash period matches an actual period. It is used to seperate the domain name from the top level domain: @gmail . com for example.
+
+([a-z\.]{2,6}): This is the capturing group for the top level domain: the .com, .net. etc. This character set includes lowercase letters and a period. the {2,6} is there to specify that the preceeding character set happens between 2 and 6 times. And like I mentioned before the dollar sign $ ends the regex function.
+
+
+## Author
+My name is Corey Carpenter and I'm learning how to code in the hopes I can create an application I can sell. I'm currently 19 years old as of 2023 and I really enjoy coding so far. My [Github](https://github.com/Corey-Carpenter) has all the projects I've worked on so far. Nothing terribly fancy or overly complicated but it is definitely a good start.
